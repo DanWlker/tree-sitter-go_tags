@@ -91,11 +91,16 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "tag_identifier",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "tag_identifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": " ",

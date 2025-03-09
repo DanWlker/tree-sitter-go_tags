@@ -7,7 +7,7 @@
 #define LANGUAGE_VERSION 14
 #define STATE_COUNT 28
 #define LARGE_STATE_COUNT 2
-#define SYMBOL_COUNT 20
+#define SYMBOL_COUNT 21
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 7
 #define EXTERNAL_TOKEN_COUNT 0
@@ -21,7 +21,7 @@ enum ts_symbol_identifiers {
   anon_sym_DQUOTE = 3,
   anon_sym_SEMI = 4,
   anon_sym_COMMA = 5,
-  aux_sym_identifier_token1 = 6,
+  aux_sym_tag_identifier_token1 = 6,
   sym_source_file = 7,
   sym__definition = 8,
   sym__tag_definition = 9,
@@ -30,11 +30,12 @@ enum ts_symbol_identifiers {
   sym_identifier_expression_statement = 12,
   sym_expression_statement = 13,
   sym_expression = 14,
-  sym_identifier = 15,
-  sym_expression_content = 16,
-  aux_sym_source_file_repeat1 = 17,
-  aux_sym_block_repeat1 = 18,
-  aux_sym_expression_repeat1 = 19,
+  sym_tag_identifier = 15,
+  sym_identifier = 16,
+  sym_expression_content = 17,
+  aux_sym_source_file_repeat1 = 18,
+  aux_sym_block_repeat1 = 19,
+  aux_sym_expression_repeat1 = 20,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -44,7 +45,7 @@ static const char * const ts_symbol_names[] = {
   [anon_sym_DQUOTE] = "\"",
   [anon_sym_SEMI] = ";",
   [anon_sym_COMMA] = ",",
-  [aux_sym_identifier_token1] = "identifier_token1",
+  [aux_sym_tag_identifier_token1] = "tag_identifier_token1",
   [sym_source_file] = "source_file",
   [sym__definition] = "_definition",
   [sym__tag_definition] = "_tag_definition",
@@ -53,6 +54,7 @@ static const char * const ts_symbol_names[] = {
   [sym_identifier_expression_statement] = "identifier_expression_statement",
   [sym_expression_statement] = "expression_statement",
   [sym_expression] = "expression",
+  [sym_tag_identifier] = "tag_identifier",
   [sym_identifier] = "identifier",
   [sym_expression_content] = "expression_content",
   [aux_sym_source_file_repeat1] = "source_file_repeat1",
@@ -67,7 +69,7 @@ static const TSSymbol ts_symbol_map[] = {
   [anon_sym_DQUOTE] = anon_sym_DQUOTE,
   [anon_sym_SEMI] = anon_sym_SEMI,
   [anon_sym_COMMA] = anon_sym_COMMA,
-  [aux_sym_identifier_token1] = aux_sym_identifier_token1,
+  [aux_sym_tag_identifier_token1] = aux_sym_tag_identifier_token1,
   [sym_source_file] = sym_source_file,
   [sym__definition] = sym__definition,
   [sym__tag_definition] = sym__tag_definition,
@@ -76,6 +78,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_identifier_expression_statement] = sym_identifier_expression_statement,
   [sym_expression_statement] = sym_expression_statement,
   [sym_expression] = sym_expression,
+  [sym_tag_identifier] = sym_tag_identifier,
   [sym_identifier] = sym_identifier,
   [sym_expression_content] = sym_expression_content,
   [aux_sym_source_file_repeat1] = aux_sym_source_file_repeat1,
@@ -108,7 +111,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = false,
   },
-  [aux_sym_identifier_token1] = {
+  [aux_sym_tag_identifier_token1] = {
     .visible = false,
     .named = false,
   },
@@ -141,6 +144,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .named = true,
   },
   [sym_expression] = {
+    .visible = true,
+    .named = true,
+  },
+  [sym_tag_identifier] = {
     .visible = true,
     .named = true,
   },
@@ -256,7 +263,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_COMMA);
       END_STATE();
     case 9:
-      ACCEPT_TOKEN(aux_sym_identifier_token1);
+      ACCEPT_TOKEN(aux_sym_tag_identifier_token1);
       if (lookahead == ' ') ADVANCE(5);
       if (('\t' <= lookahead && lookahead <= '\r')) ADVANCE(9);
       if (lookahead != 0 &&
@@ -266,7 +273,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead != ';') ADVANCE(11);
       END_STATE();
     case 10:
-      ACCEPT_TOKEN(aux_sym_identifier_token1);
+      ACCEPT_TOKEN(aux_sym_tag_identifier_token1);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(10);
       if (lookahead != 0 &&
@@ -276,7 +283,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead != ';') ADVANCE(11);
       END_STATE();
     case 11:
-      ACCEPT_TOKEN(aux_sym_identifier_token1);
+      ACCEPT_TOKEN(aux_sym_tag_identifier_token1);
       if (lookahead != 0 &&
           lookahead != '"' &&
           lookahead != ',' &&
@@ -326,16 +333,16 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_DQUOTE] = ACTIONS(1),
     [anon_sym_SEMI] = ACTIONS(1),
     [anon_sym_COMMA] = ACTIONS(1),
-    [aux_sym_identifier_token1] = ACTIONS(1),
+    [aux_sym_tag_identifier_token1] = ACTIONS(1),
   },
   [1] = {
     [sym_source_file] = STATE(25),
     [sym__definition] = STATE(6),
     [sym__tag_definition] = STATE(6),
-    [sym_identifier] = STATE(26),
+    [sym_tag_identifier] = STATE(26),
     [aux_sym_source_file_repeat1] = STATE(6),
     [ts_builtin_sym_end] = ACTIONS(3),
-    [aux_sym_identifier_token1] = ACTIONS(5),
+    [aux_sym_tag_identifier_token1] = ACTIONS(5),
   },
 };
 
@@ -344,7 +351,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(7), 1,
       anon_sym_DQUOTE,
     ACTIONS(9), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(9), 1,
       sym_expression_content,
     STATE(15), 1,
@@ -358,7 +365,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_block_repeat1,
   [22] = 6,
     ACTIONS(9), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     ACTIONS(11), 1,
       anon_sym_DQUOTE,
     STATE(9), 1,
@@ -376,7 +383,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(13), 1,
       anon_sym_DQUOTE,
     ACTIONS(15), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(9), 1,
       sym_expression_content,
     STATE(15), 1,
@@ -392,20 +399,20 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(18), 1,
       ts_builtin_sym_end,
     ACTIONS(20), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(26), 1,
-      sym_identifier,
+      sym_tag_identifier,
     STATE(5), 3,
       sym__definition,
       sym__tag_definition,
       aux_sym_source_file_repeat1,
   [81] = 4,
     ACTIONS(5), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     ACTIONS(23), 1,
       ts_builtin_sym_end,
     STATE(26), 1,
-      sym_identifier,
+      sym_tag_identifier,
     STATE(5), 3,
       sym__definition,
       sym__tag_definition,
@@ -414,7 +421,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(25), 1,
       anon_sym_COLON,
     ACTIONS(29), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     ACTIONS(27), 3,
       anon_sym_DQUOTE,
       anon_sym_SEMI,
@@ -423,7 +430,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(33), 1,
       anon_sym_COMMA,
     ACTIONS(35), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(10), 1,
       aux_sym_expression_repeat1,
     ACTIONS(31), 2,
@@ -433,7 +440,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(33), 1,
       anon_sym_COMMA,
     ACTIONS(39), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(8), 1,
       aux_sym_expression_repeat1,
     ACTIONS(37), 2,
@@ -443,7 +450,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(43), 1,
       anon_sym_COMMA,
     ACTIONS(46), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(10), 1,
       aux_sym_expression_repeat1,
     ACTIONS(41), 2,
@@ -451,14 +458,14 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_SEMI,
   [150] = 2,
     ACTIONS(29), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     ACTIONS(27), 3,
       anon_sym_DQUOTE,
       anon_sym_SEMI,
       anon_sym_COMMA,
   [159] = 2,
     ACTIONS(46), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     ACTIONS(41), 3,
       anon_sym_DQUOTE,
       anon_sym_SEMI,
@@ -469,29 +476,29 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(50), 1,
       anon_sym_SPACE,
     ACTIONS(52), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [178] = 2,
     ACTIONS(54), 1,
       ts_builtin_sym_end,
     ACTIONS(56), 2,
       anon_sym_SPACE,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [186] = 3,
     ACTIONS(58), 1,
       anon_sym_DQUOTE,
     ACTIONS(60), 1,
       anon_sym_SEMI,
     ACTIONS(62), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [196] = 2,
     ACTIONS(64), 1,
       ts_builtin_sym_end,
     ACTIONS(66), 2,
       anon_sym_SPACE,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [204] = 3,
     ACTIONS(68), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(9), 1,
       sym_expression_content,
     STATE(18), 1,
@@ -502,7 +509,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(72), 1,
       anon_sym_SEMI,
     ACTIONS(74), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [224] = 2,
     ACTIONS(76), 1,
       anon_sym_DQUOTE,
@@ -511,22 +518,22 @@ static const uint16_t ts_small_parse_table[] = {
   [231] = 1,
     ACTIONS(78), 2,
       ts_builtin_sym_end,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [236] = 2,
     ACTIONS(80), 1,
       anon_sym_DQUOTE,
     ACTIONS(82), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [243] = 2,
     ACTIONS(68), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
     STATE(12), 1,
       sym_expression_content,
   [250] = 2,
     ACTIONS(84), 1,
       anon_sym_DQUOTE,
     ACTIONS(86), 1,
-      aux_sym_identifier_token1,
+      aux_sym_tag_identifier_token1,
   [257] = 1,
     ACTIONS(88), 1,
       anon_sym_COLON,
@@ -614,7 +621,7 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [82] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_expression_statement, 2, 0, 0),
   [84] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_identifier_expression_statement, 4, 0, 0),
   [86] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_identifier_expression_statement, 4, 0, 0),
-  [88] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_identifier, 1, 0, 0),
+  [88] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_tag_identifier, 1, 0, 0),
   [90] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
   [92] = {.entry = {.count = 1, .reusable = true}}, SHIFT(19),
   [94] = {.entry = {.count = 1, .reusable = true}}, SHIFT(17),

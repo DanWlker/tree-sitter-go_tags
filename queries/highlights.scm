@@ -1,2 +1,1 @@
-(identifier) @variable
-(expression_content) @string
+(tag_identifier) @variable

@@ -23,7 +23,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "tag_identifier"
         },
         {
           "type": "STRING",
@@ -154,6 +154,10 @@
           }
         }
       ]
+    },
+    "tag_identifier": {
+      "type": "PATTERN",
+      "value": "[^:;\",]+"
     },
     "identifier": {
       "type": "PATTERN",

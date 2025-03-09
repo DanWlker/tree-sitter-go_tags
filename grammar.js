@@ -15,7 +15,7 @@ module.exports = grammar({
 
     _definition: ($) => choice($._tag_definition),
 
-    _tag_definition: ($) => seq($.identifier, ":", $.block, optional(" ")),
+    _tag_definition: ($) => seq($.tag_identifier, ":", $.block, optional(" ")),
 
     block: ($) => seq('"', repeat($._statement), '"'),
 
@@ -29,6 +29,8 @@ module.exports = grammar({
 
     expression: ($) =>
       seq($.expression_content, repeat(seq(",", $.expression_content))),
+
+    tag_identifier: ($) => /[^:;",]+/,
 
     identifier: ($) => /[^:;",]+/,
 
