@@ -21,9 +21,11 @@ parser_config.go_tags = {
 
 2. run `TSInstall go_tags`
 
-Note: For now, copy `queries/highlights.scm` file into your `.config/nvim/queries/go_tags/highlights.scm` to have syntax highlighting, if anyone knows a better way do let me know
+## Highlighting setup
 
-To inject it into go tags, add this to your `queries/go/injections.scm`
+1. Copy the contents of [`queries/highlights.scm`](/queries/highlights.scm) from this repo into `<your nvim config folder>/queries/go_tags/highlights.scm` to enable syntax highlighting (if anyone knows a better way do let me know)
+
+2. To allow for injections into go struct tags, Add this to your `queries/go/injections.scm`
 
 ```
 (field_declaration
