@@ -1,6 +1,6 @@
 # tree-sitter-go_tags
 
-Go tags grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
+Go tags grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter), should match https://cs.opensource.google/go/go/+/refs/tags/go1.24.1:src/reflect/type.go;l=1036
 
 ## Installation instructions
 
