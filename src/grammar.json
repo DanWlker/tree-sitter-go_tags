@@ -6,10 +6,19 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "tag_definition"
+        "name": "_definition"
       }
     },
-    "tag_definition": {
+    "_definition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_tag_definition"
+        }
+      ]
+    },
+    "_tag_definition": {
       "type": "SEQ",
       "members": [
         {
@@ -49,7 +58,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "statement"
+            "name": "_statement"
           }
         },
         {
@@ -58,7 +67,7 @@
         }
       ]
     },
-    "statement": {
+    "_statement": {
       "type": "CHOICE",
       "members": [
         {
@@ -126,7 +135,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "expression_value"
+          "name": "expression_content"
         },
         {
           "type": "REPEAT",
@@ -139,7 +148,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "expression_value"
+                "name": "expression_content"
               }
             ]
           }
@@ -150,7 +159,7 @@
       "type": "PATTERN",
       "value": "[^:;\",]+"
     },
-    "expression_value": {
+    "expression_content": {
       "type": "PATTERN",
       "value": "[^:;\",]+"
     }

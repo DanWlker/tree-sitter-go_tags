@@ -11,13 +11,15 @@ module.exports = grammar({
   name: "go_tags",
 
   rules: {
-    source_file: ($) => repeat($.tag_definition),
+    source_file: ($) => repeat($._definition),
 
-    tag_definition: ($) => seq($.identifier, ":", $.block, optional(" ")),
+    _definition: ($) => choice($._tag_definition),
 
-    block: ($) => seq('"', repeat($.statement), '"'),
+    _tag_definition: ($) => seq($.identifier, ":", $.block, optional(" ")),
 
-    statement: ($) =>
+    block: ($) => seq('"', repeat($._statement), '"'),
+
+    _statement: ($) =>
       choice($.identifier_expression_statement, $.expression_statement),
 
     identifier_expression_statement: ($) =>
@@ -26,10 +28,10 @@ module.exports = grammar({
     expression_statement: ($) => seq($.expression, optional(";")),
 
     expression: ($) =>
-      seq($.expression_value, repeat(seq(",", $.expression_value))),
+      seq($.expression_content, repeat(seq(",", $.expression_content))),
 
     identifier: ($) => /[^:;",]+/,
 
-    expression_value: ($) => /[^:;",]+/,
+    expression_content: ($) => /[^:;",]+/,
   },
 });

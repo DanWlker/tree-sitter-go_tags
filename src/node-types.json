@@ -8,7 +8,11 @@
       "required": false,
       "types": [
         {
-          "type": "statement",
+          "type": "expression_statement",
+          "named": true
+        },
+        {
+          "type": "identifier_expression_statement",
           "named": true
         }
       ]
@@ -23,11 +27,16 @@
       "required": true,
       "types": [
         {
-          "type": "expression_value",
+          "type": "expression_content",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "expression_content",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "expression_statement",
@@ -43,11 +52,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "expression_value",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "identifier",
@@ -81,40 +85,6 @@
     "children": {
       "multiple": true,
       "required": false,
-      "types": [
-        {
-          "type": "tag_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "expression_statement",
-          "named": true
-        },
-        {
-          "type": "identifier_expression_statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "tag_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
       "types": [
         {
           "type": "block",
