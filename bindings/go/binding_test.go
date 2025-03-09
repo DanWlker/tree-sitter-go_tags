@@ -10,6 +10,6 @@ import (
 func TestCanLoadGrammar(t *testing.T) {
 	language := tree_sitter.NewLanguage(tree_sitter_go_tags.Language())
 	if language == nil {
-		t.Errorf("Error loading Go Tags grammar")
+		t.Errorf("Error loading GoTags grammar")
 	}
 }

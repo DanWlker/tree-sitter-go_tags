@@ -7,6 +7,6 @@ final class TreeSitterGoTagsTests: XCTestCase {
         let parser = Parser()
         let language = Language(language: tree_sitter_go_tags())
         XCTAssertNoThrow(try parser.setLanguage(language),
-                         "Error loading Go Tags grammar")
+                         "Error loading GoTags grammar")
     }
 }

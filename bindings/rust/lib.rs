@@ -1,4 +1,4 @@
-//! This crate provides goTags language support for the [tree-sitter][] parsing library.
+//! This crate provides GoTags language support for the [tree-sitter][] parsing library.
 //!
 //! Typically, you will use the [LANGUAGE][] constant to add this language to a
 //! tree-sitter [Parser][], and then use the parser to parse some code:
@@ -10,7 +10,7 @@
 //! let language = tree_sitter_go_tags::LANGUAGE;
 //! parser
 //!     .set_language(&language.into())
-//!     .expect("Error loading Go Tags parser");
+//!     .expect("Error loading GoTags parser");
 //! let tree = parser.parse(code, None).unwrap();
 //! assert!(!tree.root_node().has_error());
 //! ```
@@ -31,7 +31,7 @@ pub const LANGUAGE: LanguageFn = unsafe { LanguageFn::from_raw(tree_sitter_go_ta
 
 /// The content of the [`node-types.json`][] file for this grammar.
 ///
-/// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers/6-static-node-types
+/// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types
 pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 
 // NOTE: uncomment these to include any queries that this grammar contains:
@@ -48,6 +48,6 @@ mod tests {
         let mut parser = tree_sitter::Parser::new();
         parser
             .set_language(&super::LANGUAGE.into())
-            .expect("Error loading Go Tags parser");
+            .expect("Error loading GoTags parser");
     }
 }

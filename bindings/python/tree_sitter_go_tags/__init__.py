@@ -1,4 +1,4 @@
-"""This is a treesitter highlight syntax for go tags"""
+"""This is a treesitter highlight syntax for go tags """
 
 from importlib.resources import files as _files
 

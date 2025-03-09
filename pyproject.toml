@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tree-sitter-go-tags"
-description = "This is a treesitter highlight syntax for go tags"
+description = "This is a treesitter highlight syntax for go tags "
 version = "0.1.0"
 keywords = ["incremental", "parsing", "tree-sitter", "go-tags"]
 classifiers = [
@@ -14,7 +14,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 authors = [{ name = "DanWlker", email = "danielhee2@gmail.com" }]
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 license.text = "MIT"
 readme = "README.md"
 
@@ -22,8 +22,8 @@ readme = "README.md"
 Homepage = "https://github.com/danwlker/tree-sitter-go_tags"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.24"]
+core = ["tree-sitter~=0.22"]
 
 [tool.cibuildwheel]
-build = "cp310-*"
+build = "cp39-*"
 build-frontend = "build"
