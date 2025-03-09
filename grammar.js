@@ -11,9 +11,9 @@ module.exports = grammar({
   name: "go_tags",
 
   rules: {
-    source_file: ($) => repeat($._definition),
+    source_file: ($) => repeat($._tag_definition),
 
-    _definition: ($) => choice($._tag_definition),
+    // _definition: ($) => choice($._tag_definition),
 
     _tag_definition: ($) => seq($.tag_identifier, ":", $.block, optional(" ")),
 
@@ -21,7 +21,7 @@ module.exports = grammar({
 
     // The block below does not follow
     // https://cs.opensource.google/go/go/+/refs/tags/go1.24.1:src/reflect/type.go;l=1036
-    // although, it is much more powerful. Feel free to re-enable it
+    // although, it is much more featured. Feel free to re-enable it
     //
     // block: ($) => seq('"', repeat($._statement), '"'),
     //
@@ -38,8 +38,10 @@ module.exports = grammar({
     //
     // identifier: ($) => /[^:;",]+/,
 
-    tag_identifier: ($) => /[^:]+/,
+    tag_identifier: ($) => /[^:\s"]+/,
 
+    // don't parse escape quotes
+    // https://stackoverflow.com/questions/5695240/php-regex-to-ignore-escaped-quotes-within-quotes
     expression_content: ($) => /[^"\\]*(?:\\.[^"\\]*)*/,
   },
 });

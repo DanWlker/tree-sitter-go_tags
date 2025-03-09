@@ -6,17 +6,8 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "_definition"
+        "name": "_tag_definition"
       }
-    },
-    "_definition": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_tag_definition"
-        }
-      ]
     },
     "_tag_definition": {
       "type": "SEQ",
@@ -66,7 +57,7 @@
     },
     "tag_identifier": {
       "type": "PATTERN",
-      "value": "[^:]+"
+      "value": "[^:\\s\"]+"
     },
     "expression_content": {
       "type": "PATTERN",
