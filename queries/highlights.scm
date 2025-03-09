@@ -1,3 +1,3 @@
-(tag_identifier) @variable
+(identifier) @variable
 
 [":"] @operator

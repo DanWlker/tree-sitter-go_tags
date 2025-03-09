@@ -11,37 +11,16 @@ module.exports = grammar({
   name: "go_tags",
 
   rules: {
-    source_file: ($) => repeat($._tag_definition),
+    document: ($) => repeat($._tag_definition),
 
-    // _definition: ($) => choice($._tag_definition),
+    _tag_definition: ($) => seq($.identifier, ":", $.statement, optional(" ")),
 
-    _tag_definition: ($) => seq($.tag_identifier, ":", $.block, optional(" ")),
+    statement: ($) => seq('"', $.statement_content, '"'),
 
-    block: ($) => seq('"', $.expression_content, '"'),
-
-    // The block below does not follow
-    // https://cs.opensource.google/go/go/+/refs/tags/go1.24.1:src/reflect/type.go;l=1036
-    // although, it is much more featured. Feel free to re-enable it
-    //
-    // block: ($) => seq('"', repeat($._statement), '"'),
-    //
-    // _statement: ($) =>
-    //   choice($.identifier_expression_statement, $.expression_statement),
-    //
-    // identifier_expression_statement: ($) =>
-    //   seq($.identifier, ":", $.expression, optional(";")),
-    //
-    // expression_statement: ($) => seq($.expression, optional(";")),
-    //
-    // expression: ($) =>
-    //   seq($.expression_content, repeat(seq(",", $.expression_content))),
-    //
-    // identifier: ($) => /[^:;",]+/,
-
-    tag_identifier: ($) => /[^:\s"]+/,
+    identifier: ($) => /[^:\s"]+/,
 
     // don't parse escape quotes
     // https://stackoverflow.com/questions/5695240/php-regex-to-ignore-escaped-quotes-within-quotes
-    expression_content: ($) => /[^"\\]*(?:\\.[^"\\]*)*/,
+    statement_content: ($) => /[^"\\]*(?:\\.[^"\\]*)*/,
   },
 });
