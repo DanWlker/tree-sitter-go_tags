@@ -55,11 +55,8 @@
           "value": "\""
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_statement"
-          }
+          "type": "SYMBOL",
+          "name": "expression_content"
         },
         {
           "type": "STRING",
@@ -67,105 +64,13 @@
         }
       ]
     },
-    "_statement": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier_expression_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression_statement"
-        }
-      ]
-    },
-    "identifier_expression_statement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ";"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "expression_statement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ";"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "expression_content"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "expression_content"
-              }
-            ]
-          }
-        }
-      ]
-    },
     "tag_identifier": {
       "type": "PATTERN",
-      "value": "[^:;\",]+"
-    },
-    "identifier": {
-      "type": "PATTERN",
-      "value": "[^:;\",]+"
+      "value": "[^:]+"
     },
     "expression_content": {
       "type": "PATTERN",
-      "value": "[^:;\",]+"
+      "value": "[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*"
     }
   },
   "extras": [

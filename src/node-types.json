@@ -4,74 +4,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "expression_statement",
-          "named": true
-        },
-        {
-          "type": "identifier_expression_statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression_content",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "expression_content",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "expression_statement",
-    "named": true,
-    "fields": {},
-    "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "identifier_expression_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
+          "type": "expression_content",
           "named": true
         }
       ]
@@ -98,11 +35,6 @@
     }
   },
   {
-    "type": "tag_identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": " ",
     "named": false
   },
@@ -111,15 +43,15 @@
     "named": false
   },
   {
-    "type": ",",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
   {
-    "type": ";",
-    "named": false
+    "type": "expression_content",
+    "named": true
+  },
+  {
+    "type": "tag_identifier",
+    "named": true
   }
 ]

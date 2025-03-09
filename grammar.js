@@ -17,23 +17,29 @@ module.exports = grammar({
 
     _tag_definition: ($) => seq($.tag_identifier, ":", $.block, optional(" ")),
 
-    block: ($) => seq('"', repeat($._statement), '"'),
+    block: ($) => seq('"', $.expression_content, '"'),
 
-    _statement: ($) =>
-      choice($.identifier_expression_statement, $.expression_statement),
+    // The block below does not follow
+    // https://cs.opensource.google/go/go/+/refs/tags/go1.24.1:src/reflect/type.go;l=1036
+    // although, it is much more powerful. Feel free to re-enable it
+    //
+    // block: ($) => seq('"', repeat($._statement), '"'),
+    //
+    // _statement: ($) =>
+    //   choice($.identifier_expression_statement, $.expression_statement),
+    //
+    // identifier_expression_statement: ($) =>
+    //   seq($.identifier, ":", $.expression, optional(";")),
+    //
+    // expression_statement: ($) => seq($.expression, optional(";")),
+    //
+    // expression: ($) =>
+    //   seq($.expression_content, repeat(seq(",", $.expression_content))),
+    //
+    // identifier: ($) => /[^:;",]+/,
 
-    identifier_expression_statement: ($) =>
-      seq($.identifier, ":", $.expression, optional(";")),
+    tag_identifier: ($) => /[^:]+/,
 
-    expression_statement: ($) => seq($.expression, optional(";")),
-
-    expression: ($) =>
-      seq($.expression_content, repeat(seq(",", $.expression_content))),
-
-    tag_identifier: ($) => /[^:;",]+/,
-
-    identifier: ($) => /[^:;",]+/,
-
-    expression_content: ($) => /[^:;",]+/,
+    expression_content: ($) => /[^"\\]*(?:\\.[^"\\]*)*/,
   },
 });
