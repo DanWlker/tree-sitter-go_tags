@@ -29,3 +29,6 @@ To inject it into go tags, add this to your `queries/go/injections.scm`
     (#set! injection.language "go_tags")
   ))
 ```
+
+![image](https://github.com/user-attachments/assets/8c6d4c93-191b-4bd0-82eb-7a2b6462012b)
+
