@@ -4,7 +4,7 @@ Go tags grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter), s
 
 ## Installation instructions
 
-for more details, refer: <https://github.com/nvim-treesitter/nvim-treesitter#adding-parsers>
+Reference: <https://github.com/nvim-treesitter/nvim-treesitter#adding-parsers>
 
 1. Put this in your `nvim-treesitter` `config` function
 
