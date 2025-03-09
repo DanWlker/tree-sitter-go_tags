@@ -32,5 +32,4 @@ To inject it into go tags, add this to your `queries/go/injections.scm`
 
 ## Showcase for treesitter injection:
 
-![image](https://github.com/user-attachments/assets/8c6d4c93-191b-4bd0-82eb-7a2b6462012b)
-
+![image](https://github.com/user-attachments/assets/01e03699-5b97-469b-ae5f-9e3c7c4c601d)
