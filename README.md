@@ -29,8 +29,6 @@ parser_config.go_tags = {
 
 ```
 (field_declaration
-  name: (field_identifier)
-  type: (type_identifier)
   tag: (raw_string_literal
     (raw_string_literal_content) @injection.content
     (#set! injection.language "go_tags")
