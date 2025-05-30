@@ -1,19 +1,22 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
   "grammars": [
     {
       "name": "go_tags",
       "camelcase": "GoTags",
+      "title": "GoTags",
       "scope": "source.go_tags",
       "file-types": [
-        ".go_tags"
+        "go_tags"
       ],
-      "injection-regex": "^go_tags$"
+      "injection-regex": "^go_tags$",
+      "class-name": "TreeSitterGoTags"
     }
   ],
   "metadata": {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "MIT",
-    "description": "This is a treesitter highlight syntax for go tags ",
+    "description": "GoTags grammar for tree-sitter",
     "authors": [
       {
         "name": "DanWlker",
@@ -30,6 +33,7 @@
     "node": true,
     "python": true,
     "rust": true,
-    "swift": true
+    "swift": true,
+    "zig": false
   }
 }
