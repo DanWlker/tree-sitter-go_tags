@@ -7,16 +7,16 @@
 #endif
 
 #define LANGUAGE_VERSION 15
-#define STATE_COUNT 12
+#define STATE_COUNT 13
 #define LARGE_STATE_COUNT 2
 #define SYMBOL_COUNT 10
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 6
 #define EXTERNAL_TOKEN_COUNT 0
-#define FIELD_COUNT 0
+#define FIELD_COUNT 2
 #define MAX_ALIAS_SEQUENCE_LENGTH 4
 #define MAX_RESERVED_WORD_SET_SIZE 0
-#define PRODUCTION_ID_COUNT 1
+#define PRODUCTION_ID_COUNT 4
 #define SUPERTYPE_COUNT 0
 
 enum ts_symbol_identifiers {
@@ -100,6 +100,37 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   },
 };
 
+enum ts_field_identifiers {
+  field_key = 1,
+  field_value = 2,
+};
+
+static const char * const ts_field_names[] = {
+  [0] = NULL,
+  [field_key] = "key",
+  [field_value] = "value",
+};
+
+static const TSMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
+  [1] = {.index = 0, .length = 2},
+  [2] = {.index = 2, .length = 4},
+  [3] = {.index = 6, .length = 2},
+};
+
+static const TSFieldMapEntry ts_field_map_entries[] = {
+  [0] =
+    {field_key, 0, .inherited = true},
+    {field_value, 0, .inherited = true},
+  [2] =
+    {field_key, 0, .inherited = true},
+    {field_key, 1, .inherited = true},
+    {field_value, 0, .inherited = true},
+    {field_value, 1, .inherited = true},
+  [6] =
+    {field_key, 0},
+    {field_value, 2},
+};
+
 static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE_LENGTH] = {
   [0] = {0},
 };
@@ -121,6 +152,7 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [9] = 9,
   [10] = 10,
   [11] = 11,
+  [12] = 12,
 };
 
 static bool ts_lex(TSLexer *lexer, TSStateId state) {
@@ -198,8 +230,9 @@ static const TSLexerMode ts_lex_modes[STATE_COUNT] = {
   [7] = {.lex_state = 0},
   [8] = {.lex_state = 0},
   [9] = {.lex_state = 0},
-  [10] = {.lex_state = 8},
-  [11] = {.lex_state = 0},
+  [10] = {.lex_state = 0},
+  [11] = {.lex_state = 8},
+  [12] = {.lex_state = 0},
 };
 
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
@@ -210,8 +243,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_identifier] = ACTIONS(1),
   },
   [STATE(1)] = {
-    [sym_document] = STATE(9),
-    [sym__tag_definition] = STATE(2),
+    [sym_document] = STATE(10),
+    [sym__tag_definition] = STATE(6),
     [aux_sym_document_repeat1] = STATE(2),
     [ts_builtin_sym_end] = ACTIONS(3),
     [sym_identifier] = ACTIONS(5),
@@ -219,90 +252,98 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
 };
 
 static const uint16_t ts_small_parse_table[] = {
-  [0] = 3,
+  [0] = 4,
     ACTIONS(5), 1,
       sym_identifier,
     ACTIONS(7), 1,
       ts_builtin_sym_end,
-    STATE(3), 2,
-      sym__tag_definition,
+    STATE(3), 1,
       aux_sym_document_repeat1,
-  [11] = 3,
+    STATE(6), 1,
+      sym__tag_definition,
+  [13] = 4,
     ACTIONS(9), 1,
       ts_builtin_sym_end,
     ACTIONS(11), 1,
       sym_identifier,
-    STATE(3), 2,
-      sym__tag_definition,
+    STATE(3), 1,
       aux_sym_document_repeat1,
-  [22] = 3,
+    STATE(6), 1,
+      sym__tag_definition,
+  [26] = 3,
     ACTIONS(14), 1,
       ts_builtin_sym_end,
     ACTIONS(16), 1,
       anon_sym_SPACE,
     ACTIONS(18), 1,
       sym_identifier,
-  [32] = 2,
+  [36] = 2,
     ACTIONS(22), 1,
       sym_identifier,
     ACTIONS(20), 2,
       ts_builtin_sym_end,
       anon_sym_SPACE,
-  [40] = 2,
-    ACTIONS(24), 1,
+  [44] = 1,
+    ACTIONS(24), 2,
+      ts_builtin_sym_end,
+      sym_identifier,
+  [49] = 2,
+    ACTIONS(26), 1,
       anon_sym_DQUOTE,
     STATE(4), 1,
       sym_statement,
-  [47] = 1,
-    ACTIONS(26), 2,
+  [56] = 1,
+    ACTIONS(28), 2,
       ts_builtin_sym_end,
       sym_identifier,
-  [52] = 1,
-    ACTIONS(28), 1,
-      anon_sym_COLON,
-  [56] = 1,
+  [61] = 1,
     ACTIONS(30), 1,
-      ts_builtin_sym_end,
-  [60] = 1,
+      anon_sym_COLON,
+  [65] = 1,
     ACTIONS(32), 1,
-      sym_statement_content,
-  [64] = 1,
+      ts_builtin_sym_end,
+  [69] = 1,
     ACTIONS(34), 1,
+      sym_statement_content,
+  [73] = 1,
+    ACTIONS(36), 1,
       anon_sym_DQUOTE,
 };
 
 static const uint32_t ts_small_parse_table_map[] = {
   [SMALL_STATE(2)] = 0,
-  [SMALL_STATE(3)] = 11,
-  [SMALL_STATE(4)] = 22,
-  [SMALL_STATE(5)] = 32,
-  [SMALL_STATE(6)] = 40,
-  [SMALL_STATE(7)] = 47,
-  [SMALL_STATE(8)] = 52,
-  [SMALL_STATE(9)] = 56,
-  [SMALL_STATE(10)] = 60,
-  [SMALL_STATE(11)] = 64,
+  [SMALL_STATE(3)] = 13,
+  [SMALL_STATE(4)] = 26,
+  [SMALL_STATE(5)] = 36,
+  [SMALL_STATE(6)] = 44,
+  [SMALL_STATE(7)] = 49,
+  [SMALL_STATE(8)] = 56,
+  [SMALL_STATE(9)] = 61,
+  [SMALL_STATE(10)] = 65,
+  [SMALL_STATE(11)] = 69,
+  [SMALL_STATE(12)] = 73,
 };
 
 static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_document, 0, 0, 0),
-  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(8),
-  [7] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_document, 1, 0, 0),
-  [9] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_document_repeat1, 2, 0, 0),
-  [11] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_document_repeat1, 2, 0, 0), SHIFT_REPEAT(8),
-  [14] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__tag_definition, 3, 0, 0),
-  [16] = {.entry = {.count = 1, .reusable = true}}, SHIFT(7),
-  [18] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym__tag_definition, 3, 0, 0),
+  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(9),
+  [7] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_document, 1, 0, 1),
+  [9] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_document_repeat1, 2, 0, 2),
+  [11] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_document_repeat1, 2, 0, 2), SHIFT_REPEAT(9),
+  [14] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__tag_definition, 3, 0, 3),
+  [16] = {.entry = {.count = 1, .reusable = true}}, SHIFT(8),
+  [18] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym__tag_definition, 3, 0, 3),
   [20] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_statement, 3, 0, 0),
   [22] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_statement, 3, 0, 0),
-  [24] = {.entry = {.count = 1, .reusable = true}}, SHIFT(10),
-  [26] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__tag_definition, 4, 0, 0),
-  [28] = {.entry = {.count = 1, .reusable = true}}, SHIFT(6),
-  [30] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
-  [32] = {.entry = {.count = 1, .reusable = true}}, SHIFT(11),
-  [34] = {.entry = {.count = 1, .reusable = true}}, SHIFT(5),
+  [24] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_document_repeat1, 1, 0, 1),
+  [26] = {.entry = {.count = 1, .reusable = true}}, SHIFT(11),
+  [28] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__tag_definition, 4, 0, 3),
+  [30] = {.entry = {.count = 1, .reusable = true}}, SHIFT(7),
+  [32] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
+  [34] = {.entry = {.count = 1, .reusable = true}}, SHIFT(12),
+  [36] = {.entry = {.count = 1, .reusable = true}}, SHIFT(5),
 };
 
 #ifdef __cplusplus
@@ -334,6 +375,9 @@ TS_PUBLIC const TSLanguage *tree_sitter_go_tags(void) {
     .small_parse_table_map = ts_small_parse_table_map,
     .parse_actions = ts_parse_actions,
     .symbol_names = ts_symbol_names,
+    .field_names = ts_field_names,
+    .field_map_slices = ts_field_map_slices,
+    .field_map_entries = ts_field_map_entries,
     .symbol_metadata = ts_symbol_metadata,
     .public_symbol_map = ts_symbol_map,
     .alias_map = ts_non_terminal_alias_map,

@@ -13,14 +13,20 @@ module.exports = grammar({
   rules: {
     document: ($) => repeat($._tag_definition),
 
-    _tag_definition: ($) => seq($.identifier, ":", $.statement, optional(" ")),
+    _tag_definition: ($) =>
+      seq(
+        field("key", $.identifier),
+        ":",
+        field("value", $.statement),
+        optional(" "),
+      ),
 
     statement: ($) => seq('"', $.statement_content, '"'),
 
-    identifier: ($) => /[^:\s"]+/,
+    identifier: (_) => /[^:\s"]+/,
 
     // don't parse escape quotes
     // https://stackoverflow.com/questions/5695240/php-regex-to-ignore-escaped-quotes-within-quotes
-    statement_content: ($) => /[^"\\]*(?:\\.[^"\\]*)*/,
+    statement_content: (_) => /[^"\\]*(?:\\.[^"\\]*)*/,
   },
 });
