@@ -53,7 +53,7 @@ As an alternative (if you only would like to have syntax highlighting and do not
 
 1. Copy the contents of [`queries/highlights.scm`](/queries/highlights.scm) from this repo into `<your nvim config folder>/queries/go_tags/highlights.scm` to enable syntax highlighting (if anyone knows a better way do let me know)
 
-1. Add this to your `queries/go/injections.scm` to inject it into go tags
+1. Add this to your `<your nvim config folder>/queries/go/injections.scm` to inject it into go tags
 
   ```
   (field_declaration
