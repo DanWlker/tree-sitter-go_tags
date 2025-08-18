@@ -2,7 +2,7 @@
 
 Go tags grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter), should match <https://cs.opensource.google/go/go/+/refs/tags/go1.24.1:src/reflect/type.go;l=1036>
 
-As an alternative (if you only would like to have syntax highlighting and do not care about the tree structure), you could do this inside `queries/go/injections.scm`. This method does not need this repo.:
+As an alternative (if you only would like to have syntax highlighting and do not care about the tree structure), you could do this inside `queries/go/injections.scm`. Note that this method does not need require using this repo:
 
 ```
 (field_declaration
@@ -29,13 +29,11 @@ parser_config.go_tags = {
 }
 ```
 
-2. run `TSInstall go_tags`
-
-## Highlighting setup
+1. Run `TSInstall go_tags` or include it in `ensure_installed` to have it be installed automatically
 
 1. Copy the contents of [`queries/highlights.scm`](/queries/highlights.scm) from this repo into `<your nvim config folder>/queries/go_tags/highlights.scm` to enable syntax highlighting (if anyone knows a better way do let me know)
 
-2. To allow for injections into go struct tags, Add this to your `queries/go/injections.scm`
+1. Add this to your `queries/go/injections.scm` to inject it into go tags
 
 ```
 (field_declaration
