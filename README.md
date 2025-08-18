@@ -2,7 +2,7 @@
 
 Go tags grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter), should match <https://cs.opensource.google/go/go/+/refs/tags/go1.24.1:src/reflect/type.go;l=1036>
 
-As an alternative (if you only would like to have syntax highlighting and do not care about the tree structure), you could do this:
+As an alternative (if you only would like to have syntax highlighting and do not care about the tree structure), you could do this inside `queries/go/injections.scm`. This method does not need this repo.:
 
 ```
 (field_declaration
