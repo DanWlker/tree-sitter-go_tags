@@ -14,11 +14,11 @@ As an alternative (if you only would like to have syntax highlighting and do not
 
 ## Installation instructions
 
-Reference: <https://github.com/nvim-treesitter/nvim-treesitter#adding-parsers>
-
 1. Setup `nvim-treesitter`
 
     If you're using the `master` branch of `nvim-treesitter`, put this in your `config` function
+   
+    Reference: <https://github.com/nvim-treesitter/nvim-treesitter#adding-parsers>
     ```
     local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
     parser_config.go_tags = {
@@ -31,6 +31,8 @@ Reference: <https://github.com/nvim-treesitter/nvim-treesitter#adding-parsers>
     ```
 
    If you're using the `main` branch of `nvim-treesitter`:
+   
+   Reference: <https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#adding-custom-languages> 
 
    ```
    vim.api.nvim_create_autocmd('User', {
