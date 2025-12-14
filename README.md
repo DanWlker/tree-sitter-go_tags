@@ -14,23 +14,7 @@ As an alternative (if you only would like to have syntax highlighting and do not
 
 ## Installation instructions
 
-1. Setup `nvim-treesitter`
-
-    If you're using the `master` branch of `nvim-treesitter`, put this in your `config` function
-   
-    Reference: <https://github.com/nvim-treesitter/nvim-treesitter#adding-parsers>
-    ```
-    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-    parser_config.go_tags = {
-      install_info = {
-        url = 'https://github.com/DanWlker/tree-sitter-go_tags',
-        files = { 'src/parser.c' },
-        branch = 'main',
-      },
-    }
-    ```
-
-   If you're using the `main` branch of `nvim-treesitter`:
+1. Setup `nvim-treesitter`, note that only the `main` branch of `nvim-treesitter` is supported:
    
    Reference: <https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#adding-custom-languages> 
 
@@ -42,7 +26,6 @@ As an alternative (if you only would like to have syntax highlighting and do not
       require('nvim-treesitter.parsers').go_tags = {
         install_info = {
           url = 'https://github.com/DanWlker/tree-sitter-go_tags',
-          branch = 'tree-sitter-1.25.5',
         },
       }
     end,
