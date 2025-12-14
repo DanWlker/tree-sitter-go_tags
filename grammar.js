@@ -7,26 +7,11 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-module.exports = grammar({
+export default grammar({
   name: "go_tags",
 
   rules: {
-    document: ($) => repeat($._tag_definition),
-
-    _tag_definition: ($) =>
-      seq(
-        field("key", $.identifier),
-        ":",
-        field("value", $.statement),
-        optional(" "),
-      ),
-
-    statement: ($) => seq('"', $.statement_content, '"'),
-
-    identifier: (_) => /[^:\s"]+/,
-
-    // don't parse escape quotes
-    // https://stackoverflow.com/questions/5695240/php-regex-to-ignore-escaped-quotes-within-quotes
-    statement_content: (_) => /[^"\\]*(?:\\.[^"\\]*)*/,
-  },
+    // TODO: add the actual grammar rules
+    source_file: $ => "hello"
+  }
 });

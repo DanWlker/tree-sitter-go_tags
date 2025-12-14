@@ -14,22 +14,25 @@
     }
   ],
   "metadata": {
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "MIT",
     "description": "GoTags grammar for tree-sitter",
     "authors": [
       {
         "name": "DanWlker",
-        "email": "danielhee2@gmail.com"
+        "email": "danielhee2@gmail.com",
+        "url": ""
       }
     ],
     "links": {
-      "repository": "https://github.com/DanWlker/tree-sitter-go_tags"
+      "repository": "https://github.com/DanWlker/tree-sitter-go_tags",
+      "funding": ""
     }
   },
   "bindings": {
     "c": true,
     "go": true,
+    "java": false,
     "node": true,
     "python": true,
     "rust": true,
