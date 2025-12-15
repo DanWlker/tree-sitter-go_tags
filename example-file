@@ -1,0 +1,1 @@
+gorm:"->;<-:create;embedded;embeddedPrefix:\"author_;thing:\"herro" json:"deletedAt,omitempty;" sql:"size:32; not null; unique"
