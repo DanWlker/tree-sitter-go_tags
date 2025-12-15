@@ -4,7 +4,7 @@ Go tags grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter), s
 
 As an alternative (if you only would like to have syntax highlighting and do not care about the tree structure), you could do this inside `queries/go/injections.scm`. Note that this method does not need require using this repo:
 
-```
+```query
 (field_declaration
   tag: (raw_string_literal
     (raw_string_literal_content) @injection.content
@@ -15,22 +15,22 @@ As an alternative (if you only would like to have syntax highlighting and do not
 ## Installation instructions
 
 1. Setup `nvim-treesitter`, note that only the `main` branch of `nvim-treesitter` is supported:
-   
-   Reference: <https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#adding-custom-languages> 
 
-   ```
-   vim.api.nvim_create_autocmd('User', {
-    pattern = 'TSUpdate',
-    group = vim.api.nvim_create_augroup('nvim-treesitter-parser', { clear = true }),
-    callback = function()
-      require('nvim-treesitter.parsers').go_tags = {
-        install_info = {
-          url = 'https://github.com/DanWlker/tree-sitter-go_tags',
-        },
-      }
-    end,
-   })
-   ```
+Reference: <https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#adding-custom-languages>
+
+```lua
+vim.api.nvim_create_autocmd('User', {
+pattern = 'TSUpdate',
+group = vim.api.nvim_create_augroup('nvim-treesitter-parser', { clear = true }),
+callback = function()
+  require('nvim-treesitter.parsers').go_tags = {
+    install_info = {
+      url = 'https://github.com/DanWlker/tree-sitter-go_tags',
+    },
+  }
+end,
+})
+```
 
 1. Run `TSInstall go_tags` or include it in `ensure_installed` to have it be installed automatically
 
@@ -38,13 +38,13 @@ As an alternative (if you only would like to have syntax highlighting and do not
 
 1. Add this to your `<your nvim config folder>/queries/go/injections.scm` to inject it into go tags
 
-  ```
-  (field_declaration
-    tag: (raw_string_literal
-      (raw_string_literal_content) @injection.content
-      (#set! injection.language "go_tags")
-    ))
-  ```
+```query
+(field_declaration
+  tag: (raw_string_literal
+    (raw_string_literal_content) @injection.content
+    (#set! injection.language "go_tags")
+))
+```
 
 ## Showcase for treesitter injection
 
