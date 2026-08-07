@@ -26,6 +26,7 @@ As an alternative (if you only would like to have syntax highlighting and do not
      require('nvim-treesitter.parsers').go_tags = {
        install_info = {
          url = 'https://github.com/DanWlker/tree-sitter-go_tags',
+         queries = 'queries'
        },
      }
    end,
@@ -33,8 +34,6 @@ As an alternative (if you only would like to have syntax highlighting and do not
    ```
 
 1. Run `TSInstall go_tags` or include it in `ensure_installed` to have it be installed automatically
-
-1. Copy the contents of [`queries/highlights.scm`](/queries/highlights.scm) from this repo into `<your nvim config folder>/queries/go_tags/highlights.scm` to enable syntax highlighting (if anyone knows a better way do let me know)
 
 1. Add this to your `<your nvim config folder>/queries/go/injections.scm` to inject it into go tags
 
